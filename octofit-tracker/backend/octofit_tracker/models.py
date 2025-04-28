@@ -8,7 +8,7 @@ class User(Document):
 
 # Team model
 class Team(Document):
-    name = models.CharField(max_length=100)
+    name = StringField(max_length=100)
     members = ListField(ReferenceField(User))
 
 # Activity model
@@ -24,6 +24,6 @@ class Leaderboard(Document):
 
 # Workout model
 class Workout(Document):
-    name = models.CharField(max_length=100)
+    name = StringField(max_length=100)
     duration = IntField()  # in minutes
     calories_burned = IntField()
