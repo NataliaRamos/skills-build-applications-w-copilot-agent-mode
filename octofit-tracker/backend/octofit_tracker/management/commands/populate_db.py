@@ -22,12 +22,12 @@ class Command(BaseCommand):
 
         # Populate activities
         for activity_data in test_data['activities']:
-            user = User.objects.get(username=activity_data['user'])  # Ensure user exists before creating activity
+            user = User.objects(username=activity_data['user']).first()  # Ensure user exists before creating activity
             Activity(user=user, description=activity_data['description']).save()
 
         # Populate leaderboard
         for leaderboard_data in test_data['leaderboard']:
-            team = Team.objects.get(name=leaderboard_data['team'])
+            team = Team.objects(name=leaderboard_data['team']).first()
             Leaderboard(team=team, points=leaderboard_data['points']).save()
 
         # Populate workouts
