@@ -72,13 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'octofit_tracker.wsgi.application'
 
-# Connect to MongoDB
-connect(
-    db="octofit_db",
-    host="localhost",
-    port=27017
-)
-
 
 # Database configuration
 DATABASES = {
