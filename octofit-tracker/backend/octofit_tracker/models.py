@@ -1,29 +1,29 @@
-from django.db import models
+from mongoengine import Document, StringField, EmailField, IntField, ListField, ReferenceField, DateTimeField
 
 # User model
-class User(models.Model):
-    username = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
+class User(Document):
+    username = StringField(max_length=100)
+    email = EmailField(unique=True)
+    password = StringField(max_length=100)
 
 # Team model
-class Team(models.Model):
+class Team(Document):
     name = models.CharField(max_length=100)
-    members = models.ManyToManyField(User)
+    members = ListField(ReferenceField(User))
 
 # Activity model
-class Activity(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+class Activity(Document):
+    user = ReferenceField(User)
+    description = StringField()
+    date = DateTimeField()
 
 # Leaderboard model
-class Leaderboard(models.Model):
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    points = models.IntegerField()
+class Leaderboard(Document):
+    team = ReferenceField(Team)
+    points = IntField()
 
 # Workout model
-class Workout(models.Model):
+class Workout(Document):
     name = models.CharField(max_length=100)
-    duration = models.IntegerField()  # in minutes
-    calories_burned = models.IntegerField()
+    duration = IntField()  # in minutes
+    calories_burned = IntField()
