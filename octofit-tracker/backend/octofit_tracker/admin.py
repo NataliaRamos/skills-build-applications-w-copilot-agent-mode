@@ -3,6 +3,6 @@ from .models import User, Team, Activity, Leaderboard, Workout
 
 # admin.site.register(User)
 # Removed Team model registration as it is not compatible with Django admin
-admin.site.register(Activity)
+# Removed Activity model registration as it is not compatible with Django admin
 admin.site.register(Leaderboard)
 admin.site.register(Workout)
